@@ -1,4 +1,4 @@
-#! python3 
+#!/usr/bin/python3 
 
 import math
 
@@ -23,7 +23,7 @@ def compute():
                 # if a + b + c is equal to 1000, they are the set of pythagorean triplet
                 if a + b + c == 1000:
                     # returns product abc 
-                    return a*b*c 
+                    return str(a*b*c)
 
 if __name__ == "__main__":
     print(compute())
