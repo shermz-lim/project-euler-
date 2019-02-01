@@ -56,7 +56,7 @@ def compute():
             else:
                 total_letters += countTwoDigits(tens_and_ones)    
             if tens_and_ones != 0:
-                # counting letter 'and' only if tens and ones is not zero. therefore, number is not one hundred, two hundred etc. 
+                # counting letter 'and' only if tens and ones is not zero. therefore number is not one hundred, two hundred etc. 
                 total_letters += 3 
 
             # count hundreds
