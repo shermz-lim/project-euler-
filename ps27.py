@@ -23,29 +23,45 @@ def findPrimes(n):
 
 # used to check the consecutive prime numbers produced by function and 
 # the value of the constant c of quadratic expression 
-primes = findPrimes(100000)
-max_k = 0  
-max_b = 0 
-max_c = 0 
+# why would it not exceed 100000? greatest k - around 80, greatest b, c - 1000 
+# 80^2 + 1000*80 + 1000 = 87400 (still lower than 100000). Hence, the set of 
+# primes up till 100000 will be enough to check for all possible values of primes
+# that would occur 
 
-for c in range(-1000, 1000):
-    # checks for p(n)
-    # if constant c is a prime num
-    if c in primes or -c in primes:
-        for b in range(-1000, 1000):
-            # create the quadratic function with constant c 
-            p_func = lambda n: n**2 + b*n + c 
-            n = 0
+def compute():
+    primes = findPrimes(100000)
+    max_k = 0  
+    max_b = 0 
+    max_c = 0 
 
-            while True:
-                if p_func(n) in primes or -p_func(n) in primes:
-                    n += 1 
-                    continue 
-                else:
-                    break  
+    # for abs(c) in range 1000
+    for c in range(-999, 999, 2): # skips even numbers 
 
-            if n > 10:
-                print(n, b, c)
+        # if constant c is a prime num. c has to be prime to fulfil the first case when n = 0 
+        if abs(c) in primes:
+
+            for b in range(-999, 999, 2):
+                if abs(b) in primes or abs(b) == 1:
+                    # create the quadratic function with b and c 
+                    p_func = lambda n: n**2 + b*n + c 
+                    k = 0
+
+                    while True:
+                        if abs(p_func(k)) in primes:
+                            k += 1 
+                            continue 
+                        else:
+                            break  
+
+                    if k > max_k: 
+                        max_k = k 
+                        max_b = b 
+                        max_c = c 
+
+    return (max_b*max_c)
+
+if __name__ == "__main__":
+    print(compute())
 
 
 
