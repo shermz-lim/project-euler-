@@ -16,7 +16,6 @@ def form_amount(possible_coins, amount):
         # if amount can be divided equally by coin 
         if amount % coin == 0:
             sequence = (coin,)*(amount//coin)
-            print(sequence)
             # total way will include a set formed only by the coin 
             total_ways.add(sequence)
 
@@ -25,23 +24,27 @@ def form_amount(possible_coins, amount):
         remaining_coins = list(possible_coins)
         remaining_coins.remove(coin)
 
-        n = 1 
-        while n * coin < amount:
-            # amount left after deducting by coin * number used
-            remaining_amount = amount - n * coin
-            # number of ways to form remaining amount with remaining coins 
-            ways_form_remaining = form_amount(remaining_coins, remaining_amount)
+        if remaining_coins != []:
+            n = 1 
+            while n * coin < amount:
+                # amount left after deducting by coin * number used
+                remaining_amount = amount - n * coin
+                # number of ways to form remaining amount with remaining coins 
+                ways_form_remaining = form_amount(remaining_coins, remaining_amount)
 
-            for way in ways_form_remaining:
-                sequence = list(way) + [coin]*n
-                sequence.sort()
-                total_ways.add(tuple(sequence))
+                for way in ways_form_remaining:
+                    sequence = list(way) + [coin]*n
+                    sequence.sort()
+                    total_ways.add(tuple(sequence))
 
-            n += 1    
+                n += 1    
 
     return total_ways 
 
-print(form_amount([100, 50, 200, 10], 200))    
+if __name__ == "__main__":
+    possible_coins = [1, 2, 5, 10, 20, 50, 100, 200]
+    print(form_amount(possible_coins, 200))
+    print(len(form_amount(possible_coins, 200)))
 
 
 
