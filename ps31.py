@@ -8,7 +8,9 @@
 def totalWays(coinsToConsider, amount, memo = {}):
     """Input: coinsToConsider - tuple of coins that can be used 
         amount - amount that the coins have to form 
-        memo - previous solutions to calls of totalWays"""
+        memo - previous solutions to calls of totalWays
+        
+        returns: no. of ways to form amount with coinsToConsider"""
 
     # base case - 1 coin to consider
     if len(coinsToConsider) == 1:
